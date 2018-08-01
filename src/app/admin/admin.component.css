@@ -1,0 +1,24 @@
+body {
+  padding-top: 70px;
+}
+.navbar.navbar-inverse {
+  border: none;
+}
+.navbar .navbar-brand {
+  padding-top: 0px;
+}
+.navbar .navbar-brand img {
+  height: 50px;
+}
+
+
+.meni {
+  padding-top: 70px;
+}
+
+.clickable:hover {
+  cursor: pointer;
+  color: crimson;
+  background-color: blueviolet;
+}
+

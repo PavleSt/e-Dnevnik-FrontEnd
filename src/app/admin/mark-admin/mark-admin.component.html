@@ -1,0 +1,73 @@
+<button class="btn btn-primary" (click)="addingMark=true">
+  Add mark</button>
+
+
+<form *ngIf="addingMark" (ngSubmit)="addMarkEntity()"  #f="ngForm" novalidate>
+  <div class="form-group row">
+    <label for="inputMark" class="col-sm-2 col-form-label">Mark</label>
+    <div class="col-sm-4">
+      <input type="number" class="form-control" name="inputMark" placeholder="Mark" [(ngModel)]="model.mark">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputMarkType" class="col-sm-2 col-form-label">Mark type</label>
+    <div class="col-sm-4">
+        <select [(ngModel)]="model.examination" name="examinationType">
+            <option *ngFor="let examinationType of examinationTypes" [value]="examinationType.id">{{examinationType.display}}</option>
+        </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputStudentId" class="col-sm-2 col-form-label">Student</label>
+    <div class="col-sm-4">
+        <select [(ngModel)]="model.studentId" id="student"  name="student">
+            <option value="" disabled selected>select a student</option>
+            <option *ngFor="let student of allstudentlist" [value]="student.ID">{{student.first_name + ' ' + student.last_name}}</option>
+          </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputLectureId" class="col-sm-2 col-form-label">Lecture</label>
+    <div class="col-sm-4">
+        <select [(ngModel)]="model.lectureId" id="lecture" name="lecture">
+            <option value="" disabled selected>select a lecture</option>
+            <option *ngFor="let lecture of alllecturelist" [value]="lecture.id">{{ lecture.subject.subject_name + ' ' + lecture.grade.year }}</option>
+          </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputTeacher_username" class="col-sm-2 col-form-label">teacher_username</label>
+    <div class="col-sm-4">
+      <input type="string" class="form-control" name="inputTeacher_username" placeholder="teacher_username" [(ngModel)]="model.teacher_username">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<div class="col-md-9 offset-3">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Mark</th>
+        <th scope="col">Examination</th>
+        <th scope="col">Evaluation date</th>
+        <th scope="col">student</th>
+        <th scope="col">teacher</th>
+        <th scope="col">subject</th>
+        <th scope="col">grade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let me of allmarkslist" class="polje">
+        <th scope="row">{{me.id}}</th>
+        <td>{{me.markNo}}</td>
+        <td>{{me.examination}}</td>
+        <td>{{me.evaluation_date}}</td>
+        <td>{{me.student}}</td>
+        <td>{{me.parent}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

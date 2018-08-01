@@ -1,0 +1,87 @@
+<button class="btn btn-primary" (click)="addingStudent=true">
+  Add student</button>
+
+
+<form *ngIf="addingStudent" (ngSubmit)="addStudentEntity()"  #f="ngForm" novalidate>
+  <div class="form-group row">
+    <label for="inputFirstName" class="col-sm-2 col-form-label">First name</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="inputFirstName" placeholder="First name" [(ngModel)]="model.firstName">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputLastName" class="col-sm-2 col-form-label">Last name</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="inputLastName" placeholder="Last name" [(ngModel)]="model.lastName">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputDob" class="col-sm-2 col-form-label">Date of birth</label>
+    <div class="col-sm-4">
+      <input type="date" class="form-control" name="inputDob" placeholder="dd-mm-yyyy" [(ngModel)]="model.dob">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="inputUsername" placeholder="Username" [(ngModel)]="model.username">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-4">
+      <input type="password" class="form-control" name="inputPassword" placeholder="Password" [(ngModel)]="model.password">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputConfirmPassword" class="col-sm-2 col-form-label">Confirm password</label>
+    <div class="col-sm-4">
+      <input type="password" class="form-control" name="inputConfirmPassword" placeholder="Password" [(ngModel)]="model.confirmPassword">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputGrade" class="col-sm-2 col-form-label">Grade</label>
+    <div class="col-sm-4">
+      <input type="number" class="form-control" name="inputGrade" placeholder="Grade ID" [(ngModel)]="model.grade">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputParent" class="col-sm-2 col-form-label">Parent</label>
+    <div class="col-sm-4">
+        <select [(ngModel)]="model.parentID" id="parent">
+            <option value="" disabled selected>select a parent</option>
+            <option *ngFor="let parent of allParentlist" [value]="parent.ID">{{parent.first_name}}</option>
+          </select>
+      <!-- <input type="number" class="form-control" name="inputParent" placeholder="Parent ID" [(ngModel)]="model.parent.first_name"> -->
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<div class="col-md-9 offset-3">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Dob</th>
+        <th scope="col">Username</th>
+        <th scope="col">Grade</th>
+        <th scope="col">Parent</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let se of allstudentslist" class="polje">
+        <th scope="row">{{se.ID}}</th>
+        <td>{{se.first_name}}</td>
+        <td>{{se.last_name}}</td>
+        <td>{{se.date_of_birth}}</td>
+        <td>{{se.username}}</td>
+        <td>{{se.grade.year + '/' + se.grade.class}}</td>
+        <td>{{se.parent.first_name + ' ' + se.parent.last_name}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
